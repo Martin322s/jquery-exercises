@@ -60,9 +60,14 @@ function solve() {
             $buttonContinue.on('click', (ev) => {
                 $confirmList.append(ev.target.parentNode.parentNode);
                 let $btnCncel = $('<button>').attr('class', 'cancel-btn').text('Cancel');
+                let $btnConfirm = $('<button>').attr('class', 'confirm-btn').text('Confirm');
                 $('.edit-btn').replaceWith($btnCncel);
+                $('.continue-btn').replaceWith($btnConfirm);
 
-                
+                $btnCncel.on('click', (ev) => {
+                    ev.target.parentNode.parentNode.remove();
+                    $nextBtn.removeAttr('disabled');
+                });
             });
         }
     });
