@@ -39,6 +39,24 @@ function solve() {
             $nextBtn.attr('disabled', 'true');
             $('input').val('');
             $('select').val('');
+
+            $buttonEdit.on('click', (e) => {
+                e.preventDefault();
+
+                let inputValues = $('.ticket-info-list li article')
+                    .children()
+                    .toArray()
+                    .map(x => x.textContent.split(' '));
+
+                $firstName.val(inputValues[0][1]);
+                $lastName.val(inputValues[0][2]);
+                $peopleCount.val(inputValues[3][1]);
+                $dateFrom.val(inputValues[1][2]);
+                $daysCount.val(inputValues[2][1]);
+
+                $nextBtn.removeAttr('disabled');
+                e.target.parentNode.parentNode.remove();
+            });
         }
     });
 }
