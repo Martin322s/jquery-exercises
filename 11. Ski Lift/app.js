@@ -57,6 +57,16 @@ function solve() {
                 $nextBtn.removeAttr('disabled');
                 e.target.parentNode.parentNode.remove();
             });
+
+            $buttonContinue.on('click', (ev) => {
+                $confirmList.append(ev.target.parentNode.parentNode);
+                let $btnCncel = $('<button>').attr('class', 'cancel-btn').text('Cancel');
+                let $btnConfirm = $('<button>').attr('class', 'confirm-btn').text('Confirm');
+                $('.edit-btn').replaceWith($btnCncel);
+                $('.continue-btn').replaceWith($btnConfirm);
+
+                
+            });
         }
     });
 }
