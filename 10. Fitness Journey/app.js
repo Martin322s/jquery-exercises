@@ -69,14 +69,18 @@ function solve() {
                     $nextBtn.removeAttr('disabled');
                 });
 
-                $btnConfirm.on('click', (e) => {
+                $btnConfirm.on('click', () => {
                     let $heading = $(`
                         <h1 id="thank-you">
                             Thank you for scheduling your appointment, we look forward to seeing you!
                         </h1>
-                        <button id="done-btn">Done</button>
-                    `)
-                    $('div#main').replaceWith($heading);
+                    `);
+                    let $doneBtn = $('<button id="done-btn">Done</button>');
+                    $('div#main').replaceWith($heading, $doneBtn);
+
+                    $doneBtn.on('click', () => {
+                        location.reload();
+                    })
                 });
             });
         }
