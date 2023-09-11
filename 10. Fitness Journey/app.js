@@ -68,6 +68,16 @@ function solve() {
                     ev.target.parentNode.parentNode.remove();
                     $nextBtn.removeAttr('disabled');
                 });
+
+                $btnConfirm.on('click', (e) => {
+                    let $heading = $(`
+                        <h1 id="thank-you">
+                            Thank you for scheduling your appointment, we look forward to seeing you!
+                        </h1>
+                        <button id="done-btn">Done</button>
+                    `)
+                    $('div#main').replaceWith($heading);
+                });
             });
         }
     });
