@@ -65,6 +65,11 @@ function solve() {
                 $('.edit-btn').replaceWith($btnCncel);
                 $('.continue-btn').replaceWith($btnConfirm);
 
+                $btnCncel.on('click', (ev) => {
+                    ev.target.parentNode.parentNode.remove();
+                    $nextBtn.removeAttr('disabled');
+                });
+
                 
             });
         }
