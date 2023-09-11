@@ -70,7 +70,19 @@ function solve() {
                     $nextBtn.removeAttr('disabled');
                 });
 
-                
+                $btnConfirm.on('click', () => {
+                    let $heading = $(`
+                        <h1 id="thank-you">
+                            Thank you, have a nice day! 
+                        </h1>
+                    `);
+                    let $backBtn = $('<button id="back-btn">Back</button>');
+                    $('div#main').replaceWith($heading, $backBtn);
+
+                    $backBtn.on('click', () => {
+                        location.reload();
+                    })
+                });
             });
         }
     });
