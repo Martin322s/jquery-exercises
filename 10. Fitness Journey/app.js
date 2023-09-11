@@ -12,6 +12,11 @@ function solve() {
     $nextBtn.on('click', (e) => {
         e.preventDefault();
 
-        
+        if ($name.val() === '' || $email.val() === '' ||
+            $contactNumber.val() === '' || $classType.val() === '' || $classTime.val() === '') {
+            alert('All fields must be filled required!');
+        } else {
+
+        }
     });
 }
