@@ -8,6 +8,7 @@ function solve() {
     let $classTime = $('#class-time');
     let $nextBtn = $('#next-btn');
     let $infoList = $('.class-info');
+    let $confirmList = $('.confirm-class');
 
     $nextBtn.on('click', (e) => {
         e.preventDefault();
@@ -54,6 +55,14 @@ function solve() {
 
                 $nextBtn.removeAttr('disabled');
                 e.target.parentNode.parentNode.remove();
+            });
+
+            $buttonContinue.on('click', (ev) => {
+                $confirmList.append(ev.target.parentNode.parentNode);
+                let $btnCncel = $('<button>').attr('class', 'cancel-btn').text('Cancel');
+                $('.edit-btn').replaceWith($btnCncel);
+
+                
             });
         }
     });
