@@ -39,7 +39,22 @@ function solve() {
 
             $nextBtn.attr('disabled', 'true');
             $('input').val('');
-            $('select').val('')
+            $('select').val('');
+
+
+            $buttonEdit.on('click', (e) => {
+                e.preventDefault();
+
+                let inputValues = $('.personal-info').children().toArray().map(x => x.textContent);
+                $name.val(inputValues[0]);
+                $email.val(inputValues[1]);
+                $contactNumber.val(inputValues[2]);
+                $classType.val(inputValues[3]);
+                $classTime.val(inputValues[4]);
+
+                $nextBtn.removeAttr('disabled');
+                e.target.parentNode.parentNode.remove();
+            });
         }
     });
 }
