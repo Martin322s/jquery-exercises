@@ -9,6 +9,7 @@ function solve() {
     let submitButton = $('#form-btn');
     let progressListElement = $('#in-progress');
     let finishedListElement = $('#finished');
+    let clearBtnElement = $('#clear-btn')
 
     submitButton.on('click', (e) => {
         e.preventDefault();
@@ -44,7 +45,7 @@ function solve() {
 
         let count = $('#progress-count').text();
         $('#progress-count').text(Number(count) + 1);
-    });
+    })
 
     $(progressListElement).on('click', '.complete-btn', (e) => {
         let completedListElement = $(e.target).parent();
@@ -55,5 +56,9 @@ function solve() {
 
         let count = $('#progress-count').text();
         $('#progress-count').text(Number(count) - 1);
-    });
+    })
+
+    clearBtnElement.on('click', () => {
+        $(finishedListElement).children().remove();
+    })
 }
