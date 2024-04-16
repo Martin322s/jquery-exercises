@@ -8,6 +8,7 @@ function solve() {
     let dishInputElement = $('#task');
     let submitButton = $('#form-btn');
     let progressListElement = $('#in-progress');
+    let finishedListElement = $('#finished');
 
     submitButton.on('click', (e) => {
         e.preventDefault();
@@ -15,13 +16,15 @@ function solve() {
         if (
             firstNameInputElement.val() === '' ||
             lastNameInputElement.val() === '' ||
-            ageInputElement.val() === '',
+            ageInputElement.val() === '' ||
             genderSelectElement.val() === '' ||
             dishInputElement.val() === ''
         ) {
             alert('All fields are required!');
-        } else {
-            let newListElement = $(`
+            return;
+        }
+
+        let newListElement = $(`
             <li class="each-line">
                 <article>
                     <h4>${firstNameInputElement.val() + ' ' + lastNameInputElement.val()}</h4>
@@ -32,26 +35,25 @@ function solve() {
                 <button class="complete-btn">Mark as complete</button>
             </li>`);
 
-            firstNameInputElement.val('');
-            lastNameInputElement.val('');
-            ageInputElement.val('');
-            dishInputElement.val('');
+        firstNameInputElement.val('');
+        lastNameInputElement.val('');
+        ageInputElement.val('');
+        dishInputElement.val('');
 
-            newListElement.appendTo(progressListElement);
-            let count = Number($('#progress-count').text());
-            $('#progress-count').text(++count);
+        newListElement.appendTo(progressListElement);
 
-            $('.edit-btn').on('click', (e) => {
-                let liElement = $(e.target).parent();
+        let count = $('#progress-count').text();
+        $('#progress-count').text(Number(count) + 1);
+    });
 
-                firstNameInputElement.val($('.each-line article h4').text().split(' ')[0]);
-                lastNameInputElement.val($('.each-line article h4').text().split(' ')[1]);
-                ageInputElement.val($('.each-line article p:nth-of-type(1)').text().split(', ')[1]);
-                genderSelectElement.val($('.each-line article p:nth-of-type(1)').text().split(', ')[0]);
-                dishInputElement.val($('.each-line article p:nth-of-type(2)').text());
+    $(progressListElement).on('click', '.complete-btn', (e) => {
+        let completedListElement = $(e.target).parent();
+        $(completedListElement.children()[1]).remove();
+        $(e.target).remove();
+        $(completedListElement).remove();
+        $(completedListElement).appendTo(finishedListElement);
 
-                $(e.target).parent().remove();
-            });
-        }
+        let count = $('#progress-count').text();
+        $('#progress-count').text(Number(count) - 1);
     });
 }
