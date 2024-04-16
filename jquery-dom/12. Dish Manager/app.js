@@ -40,7 +40,18 @@ function solve() {
             newListElement.appendTo(progressListElement);
             let count = Number($('#progress-count').text());
             $('#progress-count').text(++count);
+
+            $('.edit-btn').on('click', (e) => {
+                let liElement = $(e.target).parent();
+
+                firstNameInputElement.val($('.each-line article h4').text().split(' ')[0]);
+                lastNameInputElement.val($('.each-line article h4').text().split(' ')[1]);
+                ageInputElement.val($('.each-line article p:nth-of-type(1)').text().split(', ')[1]);
+                genderSelectElement.val($('.each-line article p:nth-of-type(1)').text().split(', ')[0]);
+                dishInputElement.val($('.each-line article p:nth-of-type(2)').text());
+
+                $(e.target).parent().remove();
+            });
         }
     });
-
 }
