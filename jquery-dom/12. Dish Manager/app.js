@@ -9,7 +9,7 @@ function solve() {
     let submitButton = $('#form-btn');
     let progressListElement = $('#in-progress');
     let finishedListElement = $('#finished');
-    let clearBtnElement = $('#clear-btn')
+    let clearBtnElement = $('#clear-btn');
 
     submitButton.on('click', (e) => {
         e.preventDefault();
@@ -45,7 +45,7 @@ function solve() {
 
         let count = $('#progress-count').text();
         $('#progress-count').text(Number(count) + 1);
-    })
+    });
 
     $(progressListElement).on('click', '.complete-btn', (e) => {
         let completedListElement = $(e.target).parent();
@@ -56,9 +56,28 @@ function solve() {
 
         let count = $('#progress-count').text();
         $('#progress-count').text(Number(count) - 1);
-    })
+    });
+
+    $(progressListElement).on('click', '.edit-btn', function (e) {
+        let listItem = $(this).parent();
+        let details = $(listItem.find('article')[0]);
+
+        let fullName = details.find('h4').text().split(' ');
+        let genderAge = details.find('p').first().text().split(', ');
+
+        firstNameInputElement.val(fullName[0]);
+        lastNameInputElement.val(fullName[1]);
+        genderSelectElement.val(genderAge[0]);
+        ageInputElement.val(genderAge[1]);
+        dishInputElement.val(details.find('p').last().text().replace('Dish description: ', ''));
+
+        listItem.remove();
+
+        let count = $('#progress-count').text();
+        $('#progress-count').text(Number(count) - 1);
+    });
 
     clearBtnElement.on('click', () => {
         $(finishedListElement).children().remove();
-    })
+    });
 }
