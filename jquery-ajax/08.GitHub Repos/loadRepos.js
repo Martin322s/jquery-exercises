@@ -10,10 +10,16 @@ function loadRepos() {
     })
 
     function onSuccess(data) {
+        let reposListElement = $('#repos');
+        reposListElement.empty();
         console.log(data);
+        data.forEach(x => {
+            let liElement = $(`<li><a href="${x.clone_url}">${x.name}</a></li>`);
+            reposListElement.append(liElement);
+        });
     }
 
     function onError(err) {
-        console.log(err);
+        
     }
 }
