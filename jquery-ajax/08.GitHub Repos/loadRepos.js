@@ -20,6 +20,9 @@ function loadRepos() {
     }
 
     function onError(err) {
-        
+        let reposListElement = $('#repos');
+        reposListElement.empty();
+        let liElement = $(`<li>${err}</li>`);
+        reposListElement.append(liElement);
     }
 }
